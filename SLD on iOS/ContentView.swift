@@ -8,12 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    let icons = ["ButtonIcons/GreenButton", "ButtonIcons/YellowButton", "ButtonIcons/GrayButton"]
+    @State var selectedIconIndex: Int = 0
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            TabView(selection: $selectedIconIndex){
+                ForEach(0..<icons.count){index in
+                    Button(action: {
+                        print("\(index)")
+                    }){
+                        Image(icons[index])
+                            .frame(width: 200, height: 200)
+                    }
+                }
+            }
+            .tabViewStyle(PageTabViewStyle())
+//            Button {
+//                
+//            } label: {
+//                Image("ButtonIcons/GreenButton")
+//            }
+
         }
         .padding()
     }
